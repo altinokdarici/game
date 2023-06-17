@@ -36,7 +36,7 @@ function createTile(color: Color, number: number): Tile {
 }
 
 function parseTile(input: string): Tile {
-  const str = (input as string).toLowerCase();
+  const str = (input as string).toUpperCase();
   if (str.length != 2 && str.length != 3) {
     throw new Error("Invalid tile");
   }
