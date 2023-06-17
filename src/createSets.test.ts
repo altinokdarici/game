@@ -24,6 +24,34 @@ describe("createSets", () => {
 
     const sets = createSets(tiles);
 
-    expect(sets).toEqual(true);
+    const expected = {
+      ungroupedTiles: [{ color: "Green", number: 13 }],
+      validGroups: [
+        [
+          { color: "Black", number: 13 },
+          { color: "Black", number: 12 },
+          { color: "Black", number: 11 },
+        ],
+        [
+          { color: "Black", number: 4 },
+          { color: "Black", number: 3 },
+          { color: "Black", number: 2 },
+          { color: "Black", number: 1 },
+        ],
+        [
+          { color: "Green", number: 13 },
+          { color: "Red", number: 13 },
+          { color: "Yellow", number: 13 },
+          { color: "Black", number: 13 },
+        ],
+        [
+          { color: "Red", number: 6 },
+          { color: "Red", number: 5 },
+          { color: "Red", number: 4 },
+        ],
+      ],
+    };
+
+    expect(sets).toEqual(expected);
   });
 });

@@ -30,9 +30,12 @@ function isValidSet(group: Tile[]) {
   return group.length >= 3;
 }
 
-export function createSets(tiles: Tile[], groups: Tile[][] = []) {
-  const existingGroupLength = groups.length;
+export function createSets(tiles: Tile[], validGroups: Tile[][] = []) {
   const sortedTiles = orderBy(tiles, ["color", "number"], ["asc", "desc"]);
+  const existingGroupLength = validGroups.length;
+  const groups = [...validGroups];
+
+  validGroups.splice(0, validGroups.length);
 
   for (const tile of sortedTiles) {
     let foundGroup = false;
@@ -50,7 +53,6 @@ export function createSets(tiles: Tile[], groups: Tile[][] = []) {
     }
   }
 
-  const validGroups: Tile[][] = [];
   const ungroupedTiles: Tile[] = [];
   for (const group of groups) {
     if (isValidSet(group)) {
@@ -59,11 +61,11 @@ export function createSets(tiles: Tile[], groups: Tile[][] = []) {
       ungroupedTiles.push(...group);
     }
   }
-  const len = validGroups.length;
+
   const newGroupLength = validGroups.length - existingGroupLength;
   while (ungroupedTiles.length > 0 && newGroupLength > 0) {
     const res = createSets(ungroupedTiles, validGroups);
-    if (res.validGroups.length === len) {
+    if (res.ungroupedTiles.length === ungroupedTiles.length) {
       break;
     } else {
       ungroupedTiles.splice(0, ungroupedTiles.length, ...res.ungroupedTiles);
