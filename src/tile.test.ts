@@ -1,12 +1,12 @@
 import { describe, it, expect } from "@jest/globals";
-import { tile } from "./tile";
+import { ColorInitials, TileString, tile } from "./tile";
 import { Tile } from "./types";
 
 describe("tile", () => {
   it("should return a tile with one letter one number", () => {
     const input = tile("B1");
     const expected: Tile = {
-      color: "black",
+      color: "Black",
       number: 1,
     };
     expect(input).toStrictEqual(expected);
@@ -15,7 +15,7 @@ describe("tile", () => {
   it("should return a tile with one letter two numbers", () => {
     const input = tile("B12");
     const expected: Tile = {
-      color: "black",
+      color: "Black",
       number: 12,
     };
     expect(input).toStrictEqual(expected);
@@ -26,6 +26,6 @@ describe("tile", () => {
   });
 
   it("should throw an error with unknown letter", () => {
-    expect(() => tile("K13")).toThrowError();
+    expect(() => tile("K13" as TileString)).toThrowError();
   });
 });
