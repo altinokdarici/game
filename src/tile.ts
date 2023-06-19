@@ -1,4 +1,4 @@
-import type { Color, FakeOkeyTile, RegularTile, Tile } from './types.js';
+import type { Color, Tile } from './types.js';
 
 export type ColorInitials = {
   [K in Color]: K extends `${infer FirstLetter}${string}` ? FirstLetter : never;
@@ -22,19 +22,19 @@ function getColor(char: string): Color {
   return colorMap[char];
 }
 
-function createTile(color: Color, number: number): RegularTile {
+function createTile(color: Color, number: number): Tile {
   if (number > 13 || number < 1) {
     throw new Error('Invalid tile number');
   }
 
   return {
-    type: 'RegularTile',
+    type: 'Regular',
     color,
     number,
   };
 }
 
-function parseTile(input: string): RegularTile {
+function parseTile(input: string): Tile {
   const str = input.toUpperCase();
   if (str.length != 2 && str.length != 3) {
     throw new Error('Invalid tile');
@@ -43,21 +43,11 @@ function parseTile(input: string): RegularTile {
   return createTile(getColor(str[0]), parseInt(str.substring(1)));
 }
 
-export function isRegularTile(tile: Tile): tile is RegularTile {
-  return tile.type === 'RegularTile';
-}
-
-export function fakeOkeyTile(): FakeOkeyTile {
-  return {
-    type: 'FakeOkeyTile',
-  };
-}
-
 export type TileString = `${ColorInitials}${number}`;
 
-export function tile(color: Color, number: number): RegularTile;
-export function tile(str: TileString): RegularTile;
-export function tile(strOrColor: TileString | Color, number?: number): RegularTile {
+export function tile(color: Color, number: number): Tile;
+export function tile(str: TileString): Tile;
+export function tile(strOrColor: TileString | Color, number?: number): Tile {
   if (number == undefined || number == null) {
     return parseTile(strOrColor as string);
   }

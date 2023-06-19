@@ -1,14 +1,16 @@
-import { fakeOkeyTile, tile } from './tile.js';
+import { tile } from './tile.js';
 import type { Color, Tile } from './types.js';
 
+/**
+ * Generate random tiles for a game.
+ * @returns all the tiles that are needed for a game in a random order.
+ */
 export function generateRandomTiles(): Tile[] {
   const tempTiles = [
     ...generateTilesByColor('Black'),
     ...generateTilesByColor('Green'),
     ...generateTilesByColor('Red'),
     ...generateTilesByColor('Yellow'),
-    fakeOkeyTile(),
-    fakeOkeyTile(),
   ];
 
   const result: Tile[] = [];
