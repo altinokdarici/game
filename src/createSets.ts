@@ -1,8 +1,8 @@
 import { sameColorGroup, sameNumberGroup } from './sameColorGroup.js';
-import type { RegularTile } from './types.js';
+import type { Tile } from './types.js';
 import { orderBy } from 'lodash';
 
-function canAddToSameColorGroup(group: RegularTile[], tile: RegularTile) {
+function canAddToSameColorGroup(group: Tile[], tile: Tile) {
   const sameColor = tile.color === group[0].color;
   const lastItemInGroup = group[group.length - 1];
   const canNumberSatisfy =
@@ -13,24 +13,24 @@ function canAddToSameColorGroup(group: RegularTile[], tile: RegularTile) {
   return sameColor && canNumberSatisfy;
 }
 
-function canAddToSameNumberGroup(group: RegularTile[], tile: RegularTile) {
+function canAddToSameNumberGroup(group: Tile[], tile: Tile) {
   const isSameNumber = group[0].number === tile.number;
   const notHaveColor = !group.some((t) => t.color === tile.color);
   return isSameNumber && notHaveColor;
 }
 
-function canAddToGroup(group: RegularTile[], tile: RegularTile) {
+function canAddToGroup(group: Tile[], tile: Tile) {
   return (
     (sameColorGroup(group) && canAddToSameColorGroup(group, tile)) ||
     (sameNumberGroup(group) && canAddToSameNumberGroup(group, tile))
   );
 }
 
-function isValidSet(group: RegularTile[]) {
+function isValidSet(group: Tile[]) {
   return group.length >= 3;
 }
 
-export function createSets(tiles: RegularTile[], validGroups: RegularTile[][] = []) {
+export function createSets(tiles: Tile[], validGroups: Tile[][] = []) {
   const sortedTiles = orderBy(tiles, ['color', 'number'], ['asc', 'desc']);
   const existingGroupLength = validGroups.length;
   const groups = [...validGroups];
@@ -53,7 +53,7 @@ export function createSets(tiles: RegularTile[], validGroups: RegularTile[][] = 
     }
   }
 
-  const ungroupedTiles: RegularTile[] = [];
+  const ungroupedTiles: Tile[] = [];
   for (const group of groups) {
     if (isValidSet(group)) {
       validGroups.push(group);

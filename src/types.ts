@@ -1,13 +1,7 @@
 export type Color = 'Red' | 'Yellow' | 'Black' | 'Green';
 
-export type RegularTile = {
-  type: 'RegularTile';
+export type Tile = {
+  type: 'Regular' | 'Fake' | 'Okey';
   color: Color;
   number: number;
 };
-
-export type FakeOkeyTile = {
-  type: 'FakeOkeyTile';
-};
-
-export type Tile = RegularTile | FakeOkeyTile;

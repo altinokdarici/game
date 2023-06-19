@@ -25,29 +25,29 @@ describe('createSets', () => {
     const sets = createSets(tiles);
 
     const expected = {
-      ungroupedTiles: [{ type: 'RegularTile', color: 'Green', number: 13 }],
+      ungroupedTiles: [{ type: 'Regular', color: 'Green', number: 13 }],
       validGroups: [
         [
-          { type: 'RegularTile', color: 'Black', number: 13 },
-          { type: 'RegularTile', color: 'Black', number: 12 },
-          { type: 'RegularTile', color: 'Black', number: 11 },
+          { type: 'Regular', color: 'Black', number: 13 },
+          { type: 'Regular', color: 'Black', number: 12 },
+          { type: 'Regular', color: 'Black', number: 11 },
         ],
         [
-          { type: 'RegularTile', color: 'Black', number: 4 },
-          { type: 'RegularTile', color: 'Black', number: 3 },
-          { type: 'RegularTile', color: 'Black', number: 2 },
-          { type: 'RegularTile', color: 'Black', number: 1 },
+          { type: 'Regular', color: 'Black', number: 4 },
+          { type: 'Regular', color: 'Black', number: 3 },
+          { type: 'Regular', color: 'Black', number: 2 },
+          { type: 'Regular', color: 'Black', number: 1 },
         ],
         [
-          { type: 'RegularTile', color: 'Green', number: 13 },
-          { type: 'RegularTile', color: 'Red', number: 13 },
-          { type: 'RegularTile', color: 'Yellow', number: 13 },
-          { type: 'RegularTile', color: 'Black', number: 13 },
+          { type: 'Regular', color: 'Green', number: 13 },
+          { type: 'Regular', color: 'Red', number: 13 },
+          { type: 'Regular', color: 'Yellow', number: 13 },
+          { type: 'Regular', color: 'Black', number: 13 },
         ],
         [
-          { type: 'RegularTile', color: 'Red', number: 6 },
-          { type: 'RegularTile', color: 'Red', number: 5 },
-          { type: 'RegularTile', color: 'Red', number: 4 },
+          { type: 'Regular', color: 'Red', number: 6 },
+          { type: 'Regular', color: 'Red', number: 5 },
+          { type: 'Regular', color: 'Red', number: 4 },
         ],
       ],
     };
