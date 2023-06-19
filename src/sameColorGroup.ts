@@ -1,10 +1,10 @@
-import { RegularTile } from './types';
+import type { RegularTile } from "./types.js";
 
 /**
  * All numbers are consecutive and the same color
  */
 export function sameColorGroup(group: RegularTile[]) {
-  let color = group[0].color;
+  const color = group[0].color;
   for (const tile of group) {
     if (tile.color !== color) {
       return false;
@@ -18,7 +18,7 @@ export function sameColorGroup(group: RegularTile[]) {
  * All numbers are the same and different colors
  */
 export function sameNumberGroup(group: RegularTile[]) {
-  let number = group[0].number;
+  const number = group[0].number;
   for (const tile of group) {
     if (tile.number !== number) {
       return false;

@@ -1,16 +1,14 @@
-import { Color, FakeOkeyTile, RegularTile, Tile } from './types';
+import type { Color, FakeOkeyTile, RegularTile, Tile } from "./types.js";
 
 export type ColorInitials = {
-  [K in Color]: K extends `${infer FirstLetter}${infer Rest}`
-    ? FirstLetter
-    : never;
+  [K in Color]: K extends `${infer FirstLetter}${string}` ? FirstLetter : never;
 }[Color];
 
 const colorMap: Record<ColorInitials, Color> = {
-  B: 'Black',
-  Y: 'Yellow',
-  R: 'Red',
-  G: 'Green',
+  B: "Black",
+  Y: "Yellow",
+  R: "Red",
+  G: "Green",
 };
 
 function isColorInitials(char: string): char is ColorInitials {
@@ -19,39 +17,39 @@ function isColorInitials(char: string): char is ColorInitials {
 
 function getColor(char: string): Color {
   if (!isColorInitials(char)) {
-    throw new Error('Invalid color');
+    throw new Error("Invalid color");
   }
   return colorMap[char];
 }
 
 function createTile(color: Color, number: number): RegularTile {
   if (number > 13 || number < 1) {
-    throw new Error('Invalid tile number');
+    throw new Error("Invalid tile number");
   }
 
   return {
-    type: 'RegularTile',
+    type: "RegularTile",
     color,
     number,
   };
 }
 
 function parseTile(input: string): RegularTile {
-  const str = (input as string).toUpperCase();
+  const str = input.toUpperCase();
   if (str.length != 2 && str.length != 3) {
-    throw new Error('Invalid tile');
+    throw new Error("Invalid tile");
   }
 
   return createTile(getColor(str[0]), parseInt(str.substring(1)));
 }
 
 export function isRegularTile(tile: Tile): tile is RegularTile {
-  return tile.type === 'RegularTile';
+  return tile.type === "RegularTile";
 }
 
 export function fakeOkeyTile(): FakeOkeyTile {
   return {
-    type: 'FakeOkeyTile',
+    type: "FakeOkeyTile",
   };
 }
 

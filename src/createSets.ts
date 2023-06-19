@@ -1,6 +1,6 @@
-import { sameColorGroup, sameNumberGroup } from './sameColorGroup';
-import { RegularTile } from './types';
-import { orderBy } from 'lodash';
+import { sameColorGroup, sameNumberGroup } from "./sameColorGroup.js";
+import type { RegularTile } from "./types.js";
+import { orderBy } from "lodash";
 
 function canAddToSameColorGroup(group: RegularTile[], tile: RegularTile) {
   const sameColor = tile.color === group[0].color;
@@ -34,7 +34,7 @@ export function createSets(
   tiles: RegularTile[],
   validGroups: RegularTile[][] = []
 ) {
-  const sortedTiles = orderBy(tiles, ['color', 'number'], ['asc', 'desc']);
+  const sortedTiles = orderBy(tiles, ["color", "number"], ["asc", "desc"]);
   const existingGroupLength = validGroups.length;
   const groups = [...validGroups];
 
