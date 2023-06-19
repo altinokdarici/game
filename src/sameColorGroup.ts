@@ -1,4 +1,4 @@
-import type { RegularTile } from "./types.js";
+import type { RegularTile } from './types.js';
 
 /**
  * All numbers are consecutive and the same color
