@@ -1,5 +1,5 @@
-import { fakeOkeyTile, tile } from './tile';
-import { Color, Tile } from './types';
+import { fakeOkeyTile, tile } from './tile.js';
+import type { Color, Tile } from './types.js';
 
 export function generateRandomTiles(): Tile[] {
   const tempTiles = [

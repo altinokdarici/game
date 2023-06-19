@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
-import { sameColorGroup, sameNumberGroup } from './sameColorGroup';
-import { tile } from './tile';
+import { sameColorGroup, sameNumberGroup } from './sameColorGroup.js';
+import { tile } from './tile.js';
 
 describe('sameColorGroup', () => {
   it('sameColorGroup should work', () => {
@@ -8,11 +8,7 @@ describe('sameColorGroup', () => {
     expect(result).toEqual(true);
   });
   it('sameColorGroup should not work', () => {
-    const result = sameColorGroup([
-      tile('Green', 12),
-      tile('Green', 11),
-      tile('Red', 10),
-    ]);
+    const result = sameColorGroup([tile('Green', 12), tile('Green', 11), tile('Red', 10)]);
     expect(result).toEqual(false);
   });
 

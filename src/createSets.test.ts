@@ -1,7 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
-import { createSets } from './createSets';
-import { parseTiles } from './tiles';
-import { RegularTile } from './types';
+import { createSets } from './createSets.js';
+import { parseTiles } from './tiles.js';
 
 describe('createSets', () => {
   it('should work', () => {
@@ -20,7 +19,7 @@ describe('createSets', () => {
       'B11',
       'B2',
       'R4',
-      'R5'
+      'R5',
     );
 
     const sets = createSets(tiles);

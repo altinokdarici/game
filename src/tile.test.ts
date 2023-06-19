@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
-import { ColorInitials, TileString, tile } from './tile';
-import { RegularTile, Tile } from './types';
+import { type TileString, tile } from './tile.js';
+import type { RegularTile } from './types.js';
 
 describe('tile', () => {
   it('should return a tile with one letter one number', () => {

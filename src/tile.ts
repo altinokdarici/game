@@ -1,9 +1,7 @@
-import { Color, FakeOkeyTile, RegularTile, Tile } from './types';
+import type { Color, FakeOkeyTile, RegularTile, Tile } from './types.js';
 
 export type ColorInitials = {
-  [K in Color]: K extends `${infer FirstLetter}${infer Rest}`
-    ? FirstLetter
-    : never;
+  [K in Color]: K extends `${infer FirstLetter}${string}` ? FirstLetter : never;
 }[Color];
 
 const colorMap: Record<ColorInitials, Color> = {
@@ -37,7 +35,7 @@ function createTile(color: Color, number: number): RegularTile {
 }
 
 function parseTile(input: string): RegularTile {
-  const str = (input as string).toUpperCase();
+  const str = input.toUpperCase();
   if (str.length != 2 && str.length != 3) {
     throw new Error('Invalid tile');
   }
@@ -59,10 +57,7 @@ export type TileString = `${ColorInitials}${number}`;
 
 export function tile(color: Color, number: number): RegularTile;
 export function tile(str: TileString): RegularTile;
-export function tile(
-  strOrColor: TileString | Color,
-  number?: number
-): RegularTile {
+export function tile(strOrColor: TileString | Color, number?: number): RegularTile {
   if (number == undefined || number == null) {
     return parseTile(strOrColor as string);
   }

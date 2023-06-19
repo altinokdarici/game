@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@jest/globals';
-import { isRegularTile, tile } from './tile';
-import { generateRandomTiles } from './generateRandomTiles';
-import { RegularTile, Tile } from './types';
+import { isRegularTile } from './tile.js';
+import { generateRandomTiles } from './generateRandomTiles.js';
+import type { Tile } from './types.js';
 
 function convertTileToString(tile: Tile) {
   if (isRegularTile(tile)) {
