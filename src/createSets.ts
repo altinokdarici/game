@@ -1,8 +1,8 @@
-import { sameColorGroup, sameNumberGroup } from "./sameColorGroup";
-import { Tile } from "./types";
-import { orderBy } from "lodash";
+import { sameColorGroup, sameNumberGroup } from './sameColorGroup';
+import { RegularTile } from './types';
+import { orderBy } from 'lodash';
 
-function canAddToSameColorGroup(group: Tile[], tile: Tile) {
+function canAddToSameColorGroup(group: RegularTile[], tile: RegularTile) {
   const sameColor = tile.color === group[0].color;
   const lastItemInGroup = group[group.length - 1];
   const canNumberSatisfy =
@@ -13,25 +13,28 @@ function canAddToSameColorGroup(group: Tile[], tile: Tile) {
   return sameColor && canNumberSatisfy;
 }
 
-function canAddToSameNumberGroup(group: Tile[], tile: Tile) {
+function canAddToSameNumberGroup(group: RegularTile[], tile: RegularTile) {
   const isSameNumber = group[0].number === tile.number;
   const notHaveColor = !group.some((t) => t.color === tile.color);
   return isSameNumber && notHaveColor;
 }
 
-function canAddToGroup(group: Tile[], tile: Tile) {
+function canAddToGroup(group: RegularTile[], tile: RegularTile) {
   return (
     (sameColorGroup(group) && canAddToSameColorGroup(group, tile)) ||
     (sameNumberGroup(group) && canAddToSameNumberGroup(group, tile))
   );
 }
 
-function isValidSet(group: Tile[]) {
+function isValidSet(group: RegularTile[]) {
   return group.length >= 3;
 }
 
-export function createSets(tiles: Tile[], validGroups: Tile[][] = []) {
-  const sortedTiles = orderBy(tiles, ["color", "number"], ["asc", "desc"]);
+export function createSets(
+  tiles: RegularTile[],
+  validGroups: RegularTile[][] = []
+) {
+  const sortedTiles = orderBy(tiles, ['color', 'number'], ['asc', 'desc']);
   const existingGroupLength = validGroups.length;
   const groups = [...validGroups];
 
@@ -53,7 +56,7 @@ export function createSets(tiles: Tile[], validGroups: Tile[][] = []) {
     }
   }
 
-  const ungroupedTiles: Tile[] = [];
+  const ungroupedTiles: RegularTile[] = [];
   for (const group of groups) {
     if (isValidSet(group)) {
       validGroups.push(group);
