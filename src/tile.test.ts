@@ -23,6 +23,26 @@ describe('tile', () => {
     expect(input).toStrictEqual(expected);
   });
 
+  it('should return a tile with one letter two numbers and type', () => {
+    const input = tile('B12O');
+    const expected: Tile = {
+      type: 'Okey',
+      color: 'Black',
+      number: 12,
+    };
+    expect(input).toStrictEqual(expected);
+  });
+
+  it('should return a tile with one letter two numbers and type when its provided as parameters', () => {
+    const input = tile('Black', 12, 'Okey');
+    const expected: Tile = {
+      type: 'Okey',
+      color: 'Black',
+      number: 12,
+    };
+    expect(input).toStrictEqual(expected);
+  });
+
   it('should throw an error with one letter two numbers that are greater than excepted', () => {
     expect(() => tile('B14')).toThrowError();
   });
