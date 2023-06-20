@@ -1,7 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { generateRandomTiles } from './generateRandomTiles.js';
 import type { Tile } from './types.js';
-import { dealTiles } from './dealTiles.js';
 import { chooseOkey } from './chooseOkey.js';
 import { tile } from './tile.js';
 
