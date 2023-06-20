@@ -7,7 +7,7 @@ describe('dealTiles', () => {
   it('should deal tiles properly with extra tile', () => {
     const tiles = generateRandomTiles();
 
-    const [playerHand, remainingTiles] = dealTiles(tiles, true);
+    const { playerHand, remainingTiles } = dealTiles(tiles, true);
 
     expect(playerHand.length).toBe(15);
     expect(remainingTiles.length).toBe(104 - playerHand.length);
@@ -16,7 +16,7 @@ describe('dealTiles', () => {
   it('should deal tiles properly without extra tile', () => {
     const tiles = generateRandomTiles();
 
-    const [playerHand, remainingTiles] = dealTiles(tiles, false);
+    const { playerHand, remainingTiles } = dealTiles(tiles, false);
 
     expect(playerHand.length).toBe(14);
     expect(remainingTiles.length).toBe(104 - playerHand.length);
