@@ -6,14 +6,14 @@ import { tile } from './tile.js';
 describe('chooseOkey', () => {
   it('should choose okey ', () => {
     const tiles = [tile('G1'), tile('B13'), tile('B12'), tile('B12'), tile('B11'), tile('B11')];
-    const { allTiles, indicatorTile } = chooseOkey(tiles);
+    const { tiles: allTiles, indicator } = chooseOkey(tiles);
     const indicatorTilesInAllTiles = allTiles.filter(
-      (tile) => tile.number === indicatorTile.number && tile.color === indicatorTile.color,
+      (tile) => tile.number === indicator.number && tile.color === indicator.color,
     );
     const fakeTilesCount = allTiles.filter((tile) => tile.type === 'Fake').length;
     const okeyTilesCount = allTiles.filter((tile) => tile.type === 'Okey').length;
 
-    expect(indicatorTile).toEqual(tile('B11'));
+    expect(indicator).toEqual(tile('B11'));
     expect(indicatorTilesInAllTiles.length).toBe(1);
     expect(fakeTilesCount).toBe(2);
     expect(okeyTilesCount).toBe(2);
@@ -21,7 +21,7 @@ describe('chooseOkey', () => {
 
   it('should choose okey if indicator is 13', () => {
     const tiles = [tile('B1'), tile('B1'), tile('B13')];
-    const { allTiles } = chooseOkey(tiles);
+    const { tiles: allTiles } = chooseOkey(tiles);
 
     const okeyTile = allTiles.find((tile) => tile.type === 'Okey');
 

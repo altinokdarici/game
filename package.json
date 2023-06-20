@@ -36,6 +36,7 @@
     "typescript": "^5.1.3"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "lodash": "^4.17.21"
   },
   "lint-staged": {
