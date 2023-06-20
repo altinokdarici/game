@@ -3,13 +3,13 @@ import type { Tile } from './types.js';
 
 export function chooseOkey(tiles: Readonly<Tile[]>) {
   const allTiles = [...tiles];
-  const indicatorTile = allTiles.pop();
+  const indicator = allTiles.pop();
 
-  if (!indicatorTile) {
+  if (!indicator) {
     throw Error('indicator tile not found');
   }
-  const okeyTileNumber = indicatorTile.number === 13 ? 1 : indicatorTile.number + 1;
-  const okeyTiles = allTiles.filter((tile) => tile.number === okeyTileNumber && tile.color === indicatorTile.color);
+  const okeyTileNumber = indicator.number === 13 ? 1 : indicator.number + 1;
+  const okeyTiles = allTiles.filter((tile) => tile.number === okeyTileNumber && tile.color === indicator.color);
 
   if (okeyTiles.length !== 2) {
     throw Error('okey tile not found');
@@ -19,7 +19,7 @@ export function chooseOkey(tiles: Readonly<Tile[]>) {
     okeyTile.type = 'Okey';
   }
 
-  allTiles.push(tile(indicatorTile.color, okeyTileNumber, 'Fake'), tile(indicatorTile.color, okeyTileNumber, 'Fake'));
+  allTiles.push(tile(indicator.color, okeyTileNumber, 'Fake'), tile(indicator.color, okeyTileNumber, 'Fake'));
 
-  return { allTiles, indicatorTile };
+  return { tiles: allTiles, indicator };
 }
